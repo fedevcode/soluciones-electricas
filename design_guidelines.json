@@ -1,0 +1,96 @@
+{
+  "theme": "light",
+  "archetype": "4 (Swiss & High-Contrast - Authority & Trust)",
+  "design_philosophy": "A highly professional, trustworthy, and modern electrical services landing page. We use a dominant dark blue (#0F172A) to project authority and security, contrasted sharply with electric yellow (#FACC15) for high-conversion CTAs. The layout balances structural rigidity (bento grids, clean lines) with generous padding to create a premium corporate feel. Forms and interactive elements use subtle tactile depth.",
+  "colors": {
+    "primary_dark": "#0F172A",
+    "primary_accent": "#FACC15",
+    "background_light": "#F8FAFC",
+    "background_white": "#FFFFFF",
+    "text_dark": "#0F172A",
+    "text_muted": "#64748B",
+    "text_light": "#F1F5F9",
+    "border_subtle": "#E2E8F0",
+    "success_whatsapp": "#25D366"
+  },
+  "typography": {
+    "heading_font": "Montserrat, sans-serif",
+    "body_font": "Inter, sans-serif",
+    "h1": "text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-none text-white",
+    "h2": "text-3xl md:text-4xl font-bold tracking-tight text-slate-900",
+    "h3": "text-xl md:text-2xl font-semibold tracking-tight text-slate-900",
+    "body": "text-base text-slate-600 leading-relaxed",
+    "small": "text-sm text-slate-500 uppercase tracking-widest font-semibold"
+  },
+  "spacing_and_layout": {
+    "section_padding": "py-20 md:py-32",
+    "container_width": "max-w-7xl mx-auto px-6 md:px-12",
+    "grid_bento": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8",
+    "border_radius": "rounded-xl"
+  },
+  "interactive_states": {
+    "primary_button": "bg-[#FACC15] text-[#0F172A] hover:bg-[#EAB308] transition-colors font-bold shadow-lg hover:shadow-xl hover:-translate-y-0.5",
+    "secondary_button": "bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#0F172A] transition-colors font-bold",
+    "card_hover": "hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-slate-200 hover:border-[#FACC15]",
+    "input_focus": "focus:ring-2 focus:ring-[#FACC15] focus:border-transparent outline-none"
+  },
+  "sections": [
+    {
+      "name": "Navigation",
+      "style": "fixed w-full z-50 bg-[#0F172A]/95 backdrop-blur-md border-b border-white/10",
+      "elements": "Logo (Text + Lightning Icon in Yellow), Nav Links (White), CTA Button (Yellow)"
+    },
+    {
+      "name": "Hero",
+      "style": "relative min-h-[90vh] flex items-center bg-[#0F172A] overflow-hidden",
+      "background_image": "https://images.pexels.com/photos/33694034/pexels-photo-33694034.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "overlay": "absolute inset-0 bg-gradient-to-r from-[#0F172A] via-[#0F172A]/80 to-[#0F172A]/40",
+      "elements": "Left-aligned content. H1 'Soluciones Eléctricas en Buenos Aires'. Trust Subtitle. Two CTAs (Solicitar Presupuesto, Llamar Ahora). Trust badges row below CTAs."
+    },
+    {
+      "name": "Trust & Reputation Banner",
+      "style": "bg-white py-8 border-b border-slate-200 shadow-sm relative -mt-8 mx-6 md:mx-auto max-w-5xl rounded-xl z-10",
+      "elements": "Flex row displaying '5.0 Rating', '36 Opiniones en Google', 'Atención 24/7', 'Garantía Escrita'."
+    },
+    {
+      "name": "About Us",
+      "style": "py-24 bg-[#F8FAFC]",
+      "elements": "Split grid (1:1). Left: Structural stats (Bento style cells for '15+ Años de Experiencia', 'Cientos de obras'). Right: Narrative text on professionalism and local expertise."
+    },
+    {
+      "name": "Services",
+      "style": "py-24 bg-white",
+      "elements": "8 Cards. Grid: lg:grid-cols-4. Each card has an Icon (Lucide), Title, short desc. Style: Top border accent (border-t-4 border-[#FACC15]), white bg, crisp shadow."
+    },
+    {
+      "name": "Testimonials",
+      "style": "py-24 bg-[#0F172A] text-white",
+      "elements": "3 column grid of review cards. Dark cards (bg-white/5 border border-white/10) with 5 yellow stars, client photo, and quote."
+    },
+    {
+      "name": "Contact & Quote Section",
+      "style": "py-24 bg-[#F8FAFC]",
+      "elements": "2 columns. Left: Direct contact info (Phone, Address, Schedule, WhatsApp link) overlaid on a map or Buenos Aires aesthetic photo. Right: Quote Request Form (Shadcn components - Inputs, Select for service type, Textarea)."
+    },
+    {
+      "name": "Footer",
+      "style": "py-16 bg-[#0F172A] text-slate-400 border-t border-white/10",
+      "elements": "Logo, Quick links, Service areas, Legal."
+    }
+  ],
+  "components_to_use": [
+    "lucide-react (Icons: Zap, ShieldCheck, MapPin, Phone, Clock, Star, Wrench, Lightbulb, Home, Activity, CheckCircle2)",
+    "Shadcn UI: Button, Input, Textarea, Select, Label, Form"
+  ],
+  "images": {
+    "hero_bg": "https://images.pexels.com/photos/33694034/pexels-photo-33694034.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "services_bg": "https://images.pexels.com/photos/5767595/pexels-photo-5767595.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "location_buenos_aires": "https://images.pexels.com/photos/13589108/pexels-photo-13589108.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "testimonials": [
+      "https://images.unsplash.com/photo-1576558656222-ba66febe3dec?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTN8MHwxfHNlYXJjaHwxfHxzbWlsaW5nJTIwcHJvZmVzc2lvbmFsJTIwaGVhZHNob3R8ZW58MHx8fHwxNzc3MzIzMDAyfDA&ixlib=rb-4.1.0&q=85",
+      "https://images.pexels.com/photos/30004320/pexels-photo-30004320.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "https://images.unsplash.com/photo-1762522927402-f390672558d8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTN8MHwxfHNlYXJjaHwzfHxzbWlsaW5nJTIwcHJvZmVzc2lvbmFsJTIwaGVhZHNob3R8ZW58MHx8fHwxNzc3MzIzMDAyfDA&ixlib=rb-4.1.0&q=85"
+    ]
+  },
+  "specific_instructions": "DO NOT use a fully transparent navigation bar over the hero image; use a solid or highly blurred dark background so text remains legible. Ensure all interactive elements include 'data-testid' attributes (e.g., data-testid='quote-submit-button'). Implement a floating WhatsApp CTA button fixed at the bottom right using the green color (#25D366) and high z-index."
+}
