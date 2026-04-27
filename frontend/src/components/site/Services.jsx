@@ -8,6 +8,7 @@ import {
   Activity,
   Settings,
 } from "lucide-react";
+import { waLinkForService } from "@/lib/site";
 
 const services = [
   {
@@ -48,7 +49,7 @@ const services = [
   {
     icon: Settings,
     title: "Servicio técnico profesional",
-    desc: "Equipo matriculado con experiencia comprobable en CABA.",
+    desc: "Equipo certificado con experiencia comprobable en CABA.",
   },
 ];
 
@@ -75,10 +76,13 @@ export default function Services() {
 
         <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
           {services.map((s, i) => (
-            <div
+            <a
               key={s.title}
+              href={waLinkForService(s.title)}
+              target="_blank"
+              rel="noreferrer"
               data-testid={`service-card-${i}`}
-              className="group relative bg-white rounded-2xl border-t-4 border-t-[#FACC15] border border-slate-200 p-6 md:p-7 hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300"
+              className="group relative bg-white rounded-2xl border-t-4 border-t-[#FACC15] border border-slate-200 p-6 md:p-7 hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 cursor-pointer"
             >
               <div className="w-12 h-12 rounded-xl bg-[#0F172A] flex items-center justify-center group-hover:bg-[#FACC15] transition-colors">
                 <s.icon className="w-6 h-6 text-[#FACC15] group-hover:text-[#0F172A] transition-colors" strokeWidth={2} />
@@ -87,10 +91,11 @@ export default function Services() {
                 {s.title}
               </h3>
               <p className="mt-2 text-sm text-slate-600 leading-relaxed">{s.desc}</p>
-              <div className="mt-5 text-xs font-semibold text-slate-400 group-hover:text-[#0F172A] transition-colors">
-                Consultar →
+              <div className="mt-5 text-xs font-semibold text-slate-400 group-hover:text-[#0F172A] transition-colors inline-flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#25D366]" />
+                Consultar por WhatsApp →
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>

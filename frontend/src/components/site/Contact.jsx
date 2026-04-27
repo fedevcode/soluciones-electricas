@@ -13,7 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { COMPANY, telLink, waLink, mapEmbed, mapLink } from "@/lib/site";
+import { COMPANY, telLink, waLink, mapEmbed, mapLink, waLinkForQuote } from "@/lib/site";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
@@ -52,25 +52,30 @@ export default function Contact() {
     }
 
     setLoading(true);
-    try {
-      const payload = {
-        ...form,
-        service: form.service || "Consulta general",
-      };
-      const res = await axios.post(`${API}/contact`, payload);
-      if (res.data?.email_status === "failed") {
-        toast.success("Recibimos tu consulta. Te contactaremos a la brevedad.");
-      } else {
-        toast.success("¡Consulta enviada! Te respondemos en horario comercial.");
-      }
-      setForm({ name: "", email: "", phone: "", service: "", message: "" });
-    } catch (err) {
-      console.error(err);
-      const detail = err?.response?.data?.detail;
-      toast.error(typeof detail === "string" ? detail : "No pudimos enviar tu consulta. Probá nuevamente.");
-    } finally {
-      setLoading(false);
+    const payload = {
+      ...form,
+      service: form.service || "Consulta general",
+    };
+
+    // 1) Open WhatsApp with the prefilled message (primary delivery channel)
+    const waUrl = waLinkForQuote(payload);
+    const waWindow = window.open(waUrl, "_blank", "noopener,noreferrer");
+    if (!waWindow) {
+      // Popup blocked — fallback: navigate current tab
+      window.location.href = waUrl;
     }
+
+    // 2) Save to backend in the background (non-blocking for UX)
+    try {
+      await axios.post(`${API}/contact`, payload);
+    } catch (err) {
+      // Don't block the user; WhatsApp is the primary channel
+      console.error("Backend save failed:", err);
+    }
+
+    toast.success("¡Listo! Te redirigimos a WhatsApp con tu consulta.");
+    setForm({ name: "", email: "", phone: "", service: "", message: "" });
+    setLoading(false);
   };
 
   return (
@@ -164,14 +169,14 @@ export default function Contact() {
               className="bg-white rounded-2xl border border-slate-200 shadow-lg p-6 md:p-10"
             >
               <div className="flex items-center gap-3 mb-6">
-                <span className="w-10 h-10 rounded-xl bg-[#FACC15] flex items-center justify-center">
-                  <Send className="w-5 h-5 text-[#0F172A]" />
+                <span className="w-10 h-10 rounded-xl bg-[#25D366] flex items-center justify-center">
+                  <MessageCircle className="w-5 h-5 text-white" fill="white" stroke="#25D366" strokeWidth={1.5} />
                 </span>
                 <div>
                   <h3 className="font-display font-bold text-xl text-[#0F172A]">
-                    Solicitar Presupuesto
+                    Solicitar Presupuesto por WhatsApp
                   </h3>
-                  <p className="text-sm text-slate-500">Sin cargo · Sin compromiso</p>
+                  <p className="text-sm text-slate-500">Sin cargo · Respuesta directa por WhatsApp</p>
                 </div>
               </div>
 
@@ -232,22 +237,22 @@ export default function Contact() {
 
               <div className="mt-6 flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
                 <p className="text-xs text-slate-500 flex items-center gap-1.5">
-                  <Mail className="w-3.5 h-3.5" />
-                  Tu información es confidencial y solo se usa para contactarte.
+                  <MessageCircle className="w-3.5 h-3.5 text-[#25D366]" />
+                  Tu consulta se envía por WhatsApp para una respuesta más rápida.
                 </p>
                 <Button
                   type="submit"
                   disabled={loading}
                   data-testid="form-submit-btn"
-                  className="bg-[#FACC15] text-[#0F172A] hover:bg-[#EAB308] font-bold rounded-full h-12 px-7 shadow-md hover:shadow-lg transition-all"
+                  className="bg-[#25D366] text-white hover:bg-[#1ebe57] font-bold rounded-full h-12 px-7 shadow-md hover:shadow-lg transition-all"
                 >
                   {loading ? (
                     <>
-                      <Loader2 className="w-4 h-4 animate-spin mr-2" /> Enviando...
+                      <Loader2 className="w-4 h-4 animate-spin mr-2" /> Abriendo WhatsApp...
                     </>
                   ) : (
                     <>
-                      Enviar consulta <Send className="w-4 h-4 ml-2" />
+                      Enviar por WhatsApp <MessageCircle className="w-4 h-4 ml-2" fill="white" stroke="#25D366" strokeWidth={1.5} />
                     </>
                   )}
                 </Button>

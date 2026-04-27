@@ -12,7 +12,7 @@ import FloatingActions from "@/components/site/FloatingActions";
 
 export default function LandingPage() {
   useEffect(() => {
-    document.title = "Soluciones Eléctricas en Buenos Aires · Electricistas matriculados CABA";
+    document.title = "Soluciones Eléctricas en Buenos Aires · Electricistas certificados CABA";
     const meta = document.querySelector('meta[name="description"]') || document.createElement("meta");
     meta.name = "description";
     meta.content =

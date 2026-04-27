@@ -11,7 +11,7 @@ const stats = [
 ];
 
 const points = [
-  "Electricistas matriculados y capacitados",
+  "Electricistas certificados y capacitados",
   "Trabajos con materiales certificados",
   "Cumplimiento con normas IRAM y AEA",
   "Presupuestos claros y sin sorpresas",

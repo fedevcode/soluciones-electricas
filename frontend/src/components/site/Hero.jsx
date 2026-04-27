@@ -27,7 +27,7 @@ export default function Hero() {
         <div className="lg:col-span-8 reveal">
           <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FACC15]/15 border border-[#FACC15]/30 text-[#FACC15] text-xs font-semibold uppercase tracking-widest">
             <span className="w-1.5 h-1.5 rounded-full bg-[#FACC15] animate-pulse" />
-            Electricistas matriculados · CABA
+            Electricistas certificados · CABA
           </span>
 
           <h1

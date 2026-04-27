@@ -19,9 +19,34 @@ export const COMPANY = {
   ],
 };
 
-export const waLink = `https://wa.me/${COMPANY.whatsappNumber}?text=${encodeURIComponent(
-  COMPANY.whatsappText
-)}`;
+// Build a wa.me link with arbitrary text
+export const buildWaLink = (text) =>
+  `https://wa.me/${COMPANY.whatsappNumber}?text=${encodeURIComponent(text)}`;
+
+// Default link
+export const waLink = buildWaLink(COMPANY.whatsappText);
+
+// Service-specific WhatsApp link (used in Services cards)
+export const waLinkForService = (service) =>
+  buildWaLink(
+    `Hola, vi su sitio web y quisiera consultar por el servicio de *${service}*. ¿Me podrían pasar información y presupuesto? Gracias.`
+  );
+
+// Quote request WhatsApp link (used in contact form)
+export const waLinkForQuote = ({ name, email, phone, service, message }) => {
+  const lines = [
+    "Hola, quisiera *solicitar un presupuesto*. Estos son mis datos:",
+    "",
+    `*Nombre:* ${name || "-"}`,
+    `*Teléfono:* ${phone || "-"}`,
+    `*Email:* ${email || "-"}`,
+    `*Servicio:* ${service || "Consulta general"}`,
+    "",
+    "*Detalle:*",
+    message || "-",
+  ];
+  return buildWaLink(lines.join("\n"));
+};
 
 export const telLink = `tel:${COMPANY.phoneTel}`;
 
