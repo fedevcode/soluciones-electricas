@@ -13,7 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { COMPANY, telLink, waLink, mapEmbed, mapLink, waLinkForQuote } from "@/lib/site";
+import { COMPANY, telLink, waLink, waLinkForQuote } from "@/lib/site";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
@@ -122,12 +122,16 @@ export default function Contact() {
             />
             <InfoCard
               icon={MapPin}
-              title="Dirección"
-              text={`${COMPANY.address} · (${COMPANY.plusCode})`}
-              href={mapLink}
-              external
-              cta="Ver ubicación"
+              title="Zona de trabajo"
+              text={
+                <span>
+                  Trabajamos en toda{" "}
+                  <strong className="text-[#0F172A]">CABA y GBA</strong> — Capital
+                  Federal y Gran Buenos Aires.
+                </span>
+              }
               testid="info-address"
+              tag="Atención a domicilio"
             />
             <InfoCard
               icon={Clock}
@@ -145,20 +149,6 @@ export default function Contact() {
               testid="info-hours"
               tag="Respuesta dentro del horario comercial"
             />
-
-            <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm h-56">
-              <iframe
-                title="Ubicación Soluciones Eléctricas"
-                src={mapEmbed}
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                data-testid="contact-map"
-              />
-            </div>
           </div>
 
           {/* Form */}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Zap, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { telLink, COMPANY } from "@/lib/site";
 
@@ -33,13 +33,15 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 md:px-10 h-16 md:h-20 flex items-center justify-between">
         <a
           href="#top"
-          className="flex items-center gap-2 group"
+          className="flex items-center gap-2.5 group"
           data-testid="logo-link"
         >
-          <span className="w-9 h-9 rounded-lg bg-[#FACC15] flex items-center justify-center shadow-md group-hover:rotate-6 transition-transform">
-            <Zap className="w-5 h-5 text-[#0F172A]" strokeWidth={2.6} />
-          </span>
-          <span className="font-display font-extrabold text-white text-lg tracking-tight">
+          <img
+            src="https://customer-assets.emergentagent.com/job_electric-trust-ba/artifacts/0xgtygmf_logo%20se.jpg"
+            alt="Soluciones Eléctricas"
+            className="h-10 md:h-12 w-auto object-contain rounded-md group-hover:scale-105 transition-transform"
+          />
+          <span className="font-display font-extrabold text-white text-lg tracking-tight hidden sm:inline">
             {COMPANY.name}
           </span>
         </a>

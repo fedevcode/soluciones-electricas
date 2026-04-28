@@ -4,14 +4,13 @@ const ABOUT_IMG =
   "https://images.pexels.com/photos/5767595/pexels-photo-5767595.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=900&w=1200";
 
 const stats = [
-  { value: "+15", label: "Años de experiencia" },
-  { value: "500+", label: "Obras completadas" },
+  { value: "+10", label: "Años de experiencia" },
   { value: "24h", label: "Respuesta promedio" },
   { value: "100%", label: "Atención personalizada" },
 ];
 
 const points = [
-  "Electricistas certificados y capacitados",
+  "Electricistas certificados — electricidad y aires acondicionados",
   "Trabajos con materiales certificados",
   "Cumplimiento con normas IRAM y AEA",
   "Presupuestos claros y sin sorpresas",
@@ -30,12 +29,7 @@ export default function About() {
             Sobre nosotros
           </span>
           <h2 className="mt-3 font-display font-black text-3xl md:text-5xl text-[#0F172A] leading-tight tracking-tight">
-            Empresa eléctrica de{" "}
-            <span className="relative inline-block">
-              <span className="relative z-10">confianza</span>
-              <span className="absolute left-0 right-0 bottom-1 h-3 bg-[#FACC15]/60 -z-0" />
-            </span>{" "}
-            en CABA.
+            Empresa eléctrica de confianza en CABA y GBA.
           </h2>
           <p className="mt-6 text-base md:text-lg text-slate-600 leading-relaxed">
             <strong className="text-[#0F172A]">Soluciones Eléctricas</strong> es una
@@ -74,16 +68,16 @@ export default function About() {
             <div
               key={s.label}
               className={`rounded-2xl p-5 md:p-6 border ${
-                i % 3 === 0
-                  ? "bg-[#0F172A] text-white border-[#0F172A]"
+                i === 0
+                  ? "bg-[#0F172A] text-white border-[#0F172A] col-span-2"
                   : "bg-white border-slate-200"
               }`}
               data-testid={`about-stat-${i}`}
             >
-              <div className={`font-display font-black text-3xl md:text-4xl ${i % 3 === 0 ? "text-[#FACC15]" : "text-[#0F172A]"}`}>
+              <div className={`font-display font-black text-3xl md:text-4xl ${i === 0 ? "text-[#FACC15]" : "text-[#0F172A]"}`}>
                 {s.value}
               </div>
-              <div className={`text-xs md:text-sm mt-1 ${i % 3 === 0 ? "text-slate-300" : "text-slate-500"}`}>
+              <div className={`text-xs md:text-sm mt-1 ${i === 0 ? "text-slate-300" : "text-slate-500"}`}>
                 {s.label}
               </div>
             </div>

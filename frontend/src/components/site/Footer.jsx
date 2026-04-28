@@ -10,10 +10,12 @@ export default function Footer() {
     >
       <div className="max-w-7xl mx-auto px-6 md:px-10 py-16 grid md:grid-cols-4 gap-10">
         <div className="md:col-span-2">
-          <div className="flex items-center gap-2">
-            <span className="w-9 h-9 rounded-lg bg-[#FACC15] flex items-center justify-center">
-              <Zap className="w-5 h-5 text-[#0F172A]" strokeWidth={2.6} />
-            </span>
+          <div className="flex items-center gap-3">
+            <img
+              src="https://customer-assets.emergentagent.com/job_electric-trust-ba/artifacts/0xgtygmf_logo%20se.jpg"
+              alt="Soluciones Eléctricas"
+              className="h-12 w-auto rounded-md object-contain"
+            />
             <span className="font-display font-extrabold text-white text-lg">
               {COMPANY.name}
             </span>
@@ -24,7 +26,7 @@ export default function Footer() {
             comercios.
           </p>
           <p className="mt-4 text-xs uppercase tracking-widest text-[#FACC15]">
-            Electricista en Buenos Aires · CABA
+            Electricista y service de aires acondicionados · CABA y GBA
           </p>
         </div>
 
@@ -51,7 +53,7 @@ export default function Footer() {
             </li>
             <li className="flex items-start gap-2">
               <MapPin className="w-4 h-4 mt-0.5 shrink-0" />
-              <span>{COMPANY.address}</span>
+              <span>Zona de trabajo: CABA y GBA</span>
             </li>
             <li className="text-xs text-slate-500">
               {COMPANY.website}
@@ -79,7 +81,7 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-6 md:px-10 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-slate-500">
           <span>© {year} {COMPANY.name}. Todos los derechos reservados.</span>
-          <span>Servicio profesional · Trabajos garantizados · CABA</span>
+          <span>Servicio profesional · Trabajos garantizados · CABA y GBA</span>
         </div>
       </div>
     </footer>

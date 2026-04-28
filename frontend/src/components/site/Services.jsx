@@ -7,10 +7,20 @@ import {
   Building2,
   Activity,
   Settings,
+  AlertTriangle,
+  Wind,
+  PackageOpen,
+  Snowflake,
 } from "lucide-react";
 import { waLinkForService } from "@/lib/site";
 
 const services = [
+  {
+    icon: AlertTriangle,
+    title: "Urgencias eléctricas 24/7",
+    desc: "Atención inmediata ante cortocircuitos, cortes y emergencias en hogares y comercios.",
+    urgent: true,
+  },
   {
     icon: Cable,
     title: "Instalaciones eléctricas",
@@ -38,8 +48,8 @@ const services = [
   },
   {
     icon: Building2,
-    title: "Hogares y comercios",
-    desc: "Soluciones a medida para departamentos, casas, locales y oficinas.",
+    title: "Hogares, comercios e industrial",
+    desc: "Soluciones a medida para departamentos, casas, locales, oficinas y naves industriales.",
   },
   {
     icon: Activity,
@@ -49,7 +59,22 @@ const services = [
   {
     icon: Settings,
     title: "Servicio técnico profesional",
-    desc: "Equipo certificado con experiencia comprobable en CABA.",
+    desc: "Equipo certificado con experiencia comprobable en CABA y GBA.",
+  },
+  {
+    icon: Wind,
+    title: "Mantenimiento y reparación de AA",
+    desc: "Service integral de aires acondicionados split, multi-split y ventana.",
+  },
+  {
+    icon: PackageOpen,
+    title: "Instalación y desinstalación de AA",
+    desc: "Colocación y retiro profesional de equipos con soportes y caños certificados.",
+  },
+  {
+    icon: Snowflake,
+    title: "Recarga de gas de AA",
+    desc: "Recarga y detección de fugas de gas refrigerante para devolverle la eficiencia a tu equipo.",
   },
 ];
 
@@ -66,11 +91,11 @@ export default function Services() {
             Nuestros servicios
           </span>
           <h2 className="mt-3 font-display font-black text-3xl md:text-5xl text-[#0F172A] leading-tight tracking-tight">
-            Todo el trabajo eléctrico que tu hogar o comercio necesita.
+            Todo el trabajo eléctrico y de aires acondicionados que necesitás.
           </h2>
           <p className="mt-5 text-base md:text-lg text-slate-600 leading-relaxed">
-            Soluciones integrales con materiales de primera calidad, presupuesto sin
-            cargo y garantía escrita.
+            Soluciones integrales para hogares, comercios e industria — con materiales
+            de primera calidad, presupuesto sin cargo y garantía escrita.
           </p>
         </div>
 
@@ -82,18 +107,42 @@ export default function Services() {
               target="_blank"
               rel="noreferrer"
               data-testid={`service-card-${i}`}
-              className="group relative bg-white rounded-2xl border-t-4 border-t-[#FACC15] border border-slate-200 p-6 md:p-7 hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 cursor-pointer"
+              className={`group relative rounded-2xl p-6 md:p-7 hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 cursor-pointer ${
+                s.urgent
+                  ? "bg-[#0F172A] border-2 border-[#FACC15] text-white"
+                  : "bg-white border-t-4 border-t-[#FACC15] border border-slate-200"
+              }`}
             >
-              <div className="w-12 h-12 rounded-xl bg-[#0F172A] flex items-center justify-center group-hover:bg-[#FACC15] transition-colors">
-                <s.icon className="w-6 h-6 text-[#FACC15] group-hover:text-[#0F172A] transition-colors" strokeWidth={2} />
+              {s.urgent && (
+                <span className="absolute -top-3 left-6 px-3 py-1 rounded-full bg-[#FACC15] text-[#0F172A] text-[10px] font-black uppercase tracking-widest shadow-md">
+                  24/7 · URGENTE
+                </span>
+              )}
+              <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-colors ${
+                s.urgent
+                  ? "bg-[#FACC15]"
+                  : "bg-[#0F172A] group-hover:bg-[#FACC15]"
+              }`}>
+                <s.icon
+                  className={`w-6 h-6 transition-colors ${
+                    s.urgent ? "text-[#0F172A]" : "text-[#FACC15] group-hover:text-[#0F172A]"
+                  }`}
+                  strokeWidth={2}
+                />
               </div>
-              <h3 className="mt-5 font-display font-bold text-lg text-[#0F172A] leading-snug">
+              <h3 className={`mt-5 font-display font-bold text-lg leading-snug ${s.urgent ? "text-white" : "text-[#0F172A]"}`}>
                 {s.title}
               </h3>
-              <p className="mt-2 text-sm text-slate-600 leading-relaxed">{s.desc}</p>
-              <div className="mt-5 text-xs font-semibold text-slate-400 group-hover:text-[#0F172A] transition-colors inline-flex items-center gap-1.5">
+              <p className={`mt-2 text-sm leading-relaxed ${s.urgent ? "text-slate-300" : "text-slate-600"}`}>
+                {s.desc}
+              </p>
+              <div className={`mt-5 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors ${
+                s.urgent
+                  ? "text-[#FACC15]"
+                  : "text-slate-400 group-hover:text-[#0F172A]"
+              }`}>
                 <span className="w-1.5 h-1.5 rounded-full bg-[#25D366]" />
-                Consultar por WhatsApp →
+                {s.urgent ? "Llamar urgente por WhatsApp →" : "Consultar por WhatsApp →"}
               </div>
             </a>
           ))}
