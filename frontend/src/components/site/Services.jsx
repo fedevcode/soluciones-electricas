@@ -95,11 +95,11 @@ export default function Services() {
           </h2>
           <p className="mt-5 text-base md:text-lg text-slate-600 leading-relaxed">
             Soluciones integrales para hogares, comercios e industria — con materiales
-            de primera calidad, presupuesto sin cargo y garantía escrita.
+            de primera calidad, presupuesto sin cargo y garantía.
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+        <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 items-stretch">
           {services.map((s, i) => (
             <a
               key={s.title}
@@ -107,7 +107,7 @@ export default function Services() {
               target="_blank"
               rel="noreferrer"
               data-testid={`service-card-${i}`}
-              className={`group relative rounded-2xl p-6 md:p-7 hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 cursor-pointer ${
+              className={`group relative rounded-2xl p-6 md:p-7 hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 cursor-pointer flex flex-col h-full ${
                 s.urgent
                   ? "bg-[#0F172A] border-2 border-[#FACC15] text-white"
                   : "bg-white border-t-4 border-t-[#FACC15] border border-slate-200"
@@ -136,7 +136,7 @@ export default function Services() {
               <p className={`mt-2 text-sm leading-relaxed ${s.urgent ? "text-slate-300" : "text-slate-600"}`}>
                 {s.desc}
               </p>
-              <div className={`mt-5 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors ${
+              <div className={`mt-auto pt-5 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors ${
                 s.urgent
                   ? "text-[#FACC15]"
                   : "text-slate-400 group-hover:text-[#0F172A]"

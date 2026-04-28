@@ -56,12 +56,12 @@ export default function Testimonials() {
           </div>
         </div>
 
-        <div className="mt-14 grid md:grid-cols-3 gap-6">
+        <div className="mt-14 grid md:grid-cols-3 gap-6 items-stretch">
           {testimonials.map((t, i) => (
             <div
               key={t.name}
               data-testid={`testimonial-${i}`}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-7 hover:bg-white/10 hover:border-[#FACC15]/40 transition-colors"
+              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-7 hover:bg-white/10 hover:border-[#FACC15]/40 transition-colors flex flex-col h-full"
             >
               <div className="flex gap-0.5 mb-4">
                 {[...Array(t.rating)].map((_, idx) => (
@@ -69,7 +69,7 @@ export default function Testimonials() {
                 ))}
               </div>
               <p className="text-slate-200 text-base leading-relaxed">"{t.text}"</p>
-              <div className="mt-6 pt-5 border-t border-white/10">
+              <div className="mt-auto pt-6 border-t border-white/10">
                 <div className="font-semibold text-white text-sm">{t.name}</div>
                 <div className="text-xs text-slate-400 mt-0.5">{t.role}</div>
               </div>

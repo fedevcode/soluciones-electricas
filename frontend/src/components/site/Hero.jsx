@@ -27,7 +27,7 @@ export default function Hero() {
         <div className="lg:col-span-8 reveal">
           <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FACC15]/15 border border-[#FACC15]/30 text-[#FACC15] text-xs font-semibold uppercase tracking-widest">
             <span className="w-1.5 h-1.5 rounded-full bg-[#FACC15] animate-pulse" />
-            Electricistas certificados · Electricidad y aires acondicionados · CABA y GBA
+            Electricistas certificados y aires acondicionados · CABA y GBA
           </span>
 
           <h1
@@ -45,7 +45,7 @@ export default function Hero() {
           >
             Servicio profesional de electricidad para hogares, comercios y empresas.
             Atención <strong className="text-white">confiable, rápida y segura</strong>{" "}
-            — instalaciones, reparaciones y mantenimiento con garantía escrita.
+            — instalaciones, reparaciones y mantenimiento con garantía.
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
@@ -73,7 +73,7 @@ export default function Hero() {
             {[
               { icon: ShieldCheck, label: "Trabajo Seguro" },
               { icon: Clock, label: "Respuesta Rápida" },
-              { icon: Award, label: "Garantía Escrita" },
+              { icon: Award, label: "Garantía" },
             ].map((item) => (
               <div
                 key={item.label}
