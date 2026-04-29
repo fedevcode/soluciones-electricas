@@ -38,13 +38,13 @@ export const waLinkForQuote = ({ name, email, phone, service, message }) => {
     "Hola, quisiera *solicitar un presupuesto*. Estos son mis datos:",
     "",
     `*Nombre:* ${name || "-"}`,
-    `*Teléfono:* ${phone || "-"}`,
-    `*Email:* ${email || "-"}`,
-    `*Servicio:* ${service || "Consulta general"}`,
-    "",
-    "*Detalle:*",
-    message || "-",
   ];
+  if (phone && phone !== "No aportado") lines.push(`*Teléfono:* ${phone}`);
+  if (email && !email.includes("no-aportado@")) lines.push(`*Email:* ${email}`);
+  lines.push(`*Servicio:* ${service || "Consulta general"}`);
+  lines.push("");
+  lines.push("*Detalle:*");
+  lines.push(message || "-");
   return buildWaLink(lines.join("\n"));
 };
 

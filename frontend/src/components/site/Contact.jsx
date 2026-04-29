@@ -18,6 +18,8 @@ import { COMPANY, telLink, waLink, waLinkForQuote } from "@/lib/site";
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 const SERVICES = [
+  "Urgencias eléctricas",
+  "Aire acondicionado",
   "Instalaciones eléctricas",
   "Reparaciones eléctricas",
   "Mantenimiento preventivo",
@@ -32,8 +34,6 @@ const SERVICES = [
 export default function Contact() {
   const [form, setForm] = useState({
     name: "",
-    email: "",
-    phone: "",
     service: "",
     message: "",
   });
@@ -46,22 +46,24 @@ export default function Contact() {
     e.preventDefault();
     if (loading) return;
 
-    if (!form.name || !form.email || !form.phone || !form.message) {
+    if (!form.name || !form.message) {
       toast.error("Completá los campos obligatorios.");
       return;
     }
 
     setLoading(true);
     const payload = {
-      ...form,
+      name: form.name,
+      email: "no-aportado@soluciones-electricas.com.ar",
+      phone: "No aportado",
       service: form.service || "Consulta general",
+      message: form.message,
     };
 
     // 1) Open WhatsApp with the prefilled message (primary delivery channel)
     const waUrl = waLinkForQuote(payload);
     const waWindow = window.open(waUrl, "_blank", "noopener,noreferrer");
     if (!waWindow) {
-      // Popup blocked — fallback: navigate current tab
       window.location.href = waUrl;
     }
 
@@ -69,12 +71,11 @@ export default function Contact() {
     try {
       await axios.post(`${API}/contact`, payload);
     } catch (err) {
-      // Don't block the user; WhatsApp is the primary channel
       console.error("Backend save failed:", err);
     }
 
     toast.success("¡Listo! Te redirigimos a WhatsApp con tu consulta.");
-    setForm({ name: "", email: "", phone: "", service: "", message: "" });
+    setForm({ name: "", service: "", message: "" });
     setLoading(false);
   };
 
@@ -131,7 +132,6 @@ export default function Contact() {
                 </span>
               }
               testid="info-address"
-              tag="Atención a domicilio"
             />
             <InfoCard
               icon={Clock}
@@ -171,31 +171,12 @@ export default function Contact() {
               </div>
 
               <div className="grid sm:grid-cols-2 gap-4">
-                <FormField label="Nombre completo" required>
+                <FormField label="Nombre completo" required className="sm:col-span-2">
                   <Input
                     value={form.name}
                     onChange={update("name")}
                     placeholder="Juan Pérez"
                     data-testid="form-name"
-                    required
-                  />
-                </FormField>
-                <FormField label="Teléfono" required>
-                  <Input
-                    value={form.phone}
-                    onChange={update("phone")}
-                    placeholder="11 1234-5678"
-                    data-testid="form-phone"
-                    required
-                  />
-                </FormField>
-                <FormField label="Email" required className="sm:col-span-2">
-                  <Input
-                    type="email"
-                    value={form.email}
-                    onChange={update("email")}
-                    placeholder="tu@email.com"
-                    data-testid="form-email"
                     required
                   />
                 </FormField>

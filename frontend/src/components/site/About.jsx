@@ -1,22 +1,54 @@
-import { CheckCircle2 } from "lucide-react";
+import { useCallback, useEffect, useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import { CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react";
 
-const ABOUT_IMG =
-  "https://images.pexels.com/photos/5767595/pexels-photo-5767595.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=900&w=1200";
+const ABOUT_IMAGES = [
+  "https://customer-assets.emergentagent.com/job_electric-trust-ba/artifacts/hjip2fu0_1.jpeg",
+  "https://customer-assets.emergentagent.com/job_electric-trust-ba/artifacts/mcl65vqb_2.jpeg",
+  "https://customer-assets.emergentagent.com/job_electric-trust-ba/artifacts/l53iuxe4_3.jpeg",
+  "https://customer-assets.emergentagent.com/job_electric-trust-ba/artifacts/0o84rwpj_4.jpeg",
+];
 
 const stats = [
   { value: "+10", label: "Años de experiencia" },
-  { value: "24h", label: "Respuesta promedio" },
   { value: "100%", label: "Atención personalizada" },
 ];
 
 const points = [
-  "Electricistas certificados — electricidad y aires acondicionados",
+  "Electricista certificado y aires acondicionados",
   "Trabajos con materiales certificados",
   "Cumplimiento con normas IRAM y AEA",
   "Presupuestos claros y sin sorpresas",
 ];
 
+const AUTOPLAY_MS = 4500;
+
 export default function About() {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" });
+  const [selected, setSelected] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
+  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    const onSelect = () => setSelected(emblaApi.selectedScrollSnap());
+    onSelect();
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
+    return () => {
+      emblaApi.off("select", onSelect);
+      emblaApi.off("reInit", onSelect);
+    };
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi || isPaused) return;
+    const id = setInterval(() => emblaApi.scrollNext(), AUTOPLAY_MS);
+    return () => clearInterval(id);
+  }, [emblaApi, isPaused]);
+
   return (
     <section
       id="nosotros"
@@ -55,33 +87,86 @@ export default function About() {
           </ul>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 reveal" style={{ animationDelay: "0.15s" }}>
-          <div className="col-span-2 row-span-1 rounded-2xl overflow-hidden h-64 md:h-80 shadow-lg">
-            <img
-              src={ABOUT_IMG}
-              alt="Electricista profesional trabajando en tablero"
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
-          </div>
-          {stats.map((s, i) => (
-            <div
-              key={s.label}
-              className={`rounded-2xl p-5 md:p-6 border ${
-                i === 0
-                  ? "bg-[#0F172A] text-white border-[#0F172A] col-span-2"
-                  : "bg-white border-slate-200"
-              }`}
-              data-testid={`about-stat-${i}`}
-            >
-              <div className={`font-display font-black text-3xl md:text-4xl ${i === 0 ? "text-[#FACC15]" : "text-[#0F172A]"}`}>
-                {s.value}
-              </div>
-              <div className={`text-xs md:text-sm mt-1 ${i === 0 ? "text-slate-300" : "text-slate-500"}`}>
-                {s.label}
+        <div
+          className="reveal"
+          style={{ animationDelay: "0.15s" }}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          data-testid="about-carousel"
+        >
+          {/* Carousel */}
+          <div className="relative rounded-2xl overflow-hidden h-72 md:h-96 shadow-xl border border-slate-200 bg-[#0F172A]">
+            <div className="overflow-hidden h-full" ref={emblaRef}>
+              <div className="flex h-full">
+                {ABOUT_IMAGES.map((src, i) => (
+                  <div
+                    key={src}
+                    className="shrink-0 grow-0 basis-full h-full"
+                    data-testid={`about-slide-${i}`}
+                  >
+                    <img
+                      src={src}
+                      alt={`Trabajo realizado por Soluciones Eléctricas ${i + 1}`}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
               </div>
             </div>
-          ))}
+
+            {/* Arrows */}
+            <button
+              onClick={scrollPrev}
+              aria-label="Imagen anterior"
+              data-testid="about-prev"
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 md:w-11 md:h-11 rounded-full bg-white/90 hover:bg-[#FACC15] text-[#0F172A] flex items-center justify-center shadow-lg transition-colors"
+            >
+              <ChevronLeft className="w-5 h-5" strokeWidth={2.5} />
+            </button>
+            <button
+              onClick={scrollNext}
+              aria-label="Imagen siguiente"
+              data-testid="about-next"
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 md:w-11 md:h-11 rounded-full bg-[#FACC15] hover:bg-[#EAB308] text-[#0F172A] flex items-center justify-center shadow-lg transition-colors"
+            >
+              <ChevronRight className="w-5 h-5" strokeWidth={2.5} />
+            </button>
+
+            {/* Dots */}
+            <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5">
+              {ABOUT_IMAGES.map((_, i) => (
+                <span
+                  key={i}
+                  className={`h-1.5 rounded-full transition-all ${
+                    selected === i ? "w-6 bg-[#FACC15]" : "w-3 bg-white/50"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Stats below carousel */}
+          <div className="mt-4 grid grid-cols-2 gap-4">
+            {stats.map((s, i) => (
+              <div
+                key={s.label}
+                className={`rounded-2xl p-5 md:p-6 border ${
+                  i === 0
+                    ? "bg-[#0F172A] text-white border-[#0F172A]"
+                    : "bg-white border-slate-200"
+                }`}
+                data-testid={`about-stat-${i}`}
+              >
+                <div className={`font-display font-black text-3xl md:text-4xl ${i === 0 ? "text-[#FACC15]" : "text-[#0F172A]"}`}>
+                  {s.value}
+                </div>
+                <div className={`text-xs md:text-sm mt-1 ${i === 0 ? "text-slate-300" : "text-slate-500"}`}>
+                  {s.label}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -16,7 +16,7 @@ export default function Footer() {
               alt="Soluciones Eléctricas"
               className="h-12 w-auto rounded-md object-contain"
             />
-            <span className="font-display font-extrabold text-white text-lg">
+            <span className="font-display font-extrabold text-white text-lg uppercase">
               {COMPANY.name}
             </span>
           </div>

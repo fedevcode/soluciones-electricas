@@ -17,7 +17,7 @@ import { waLinkForService } from "@/lib/site";
 const services = [
   {
     icon: AlertTriangle,
-    title: "Urgencias eléctricas 24/7",
+    title: "Urgencias eléctricas",
     desc: "Atención inmediata ante cortocircuitos, cortes y emergencias en hogares y comercios.",
     urgent: true,
   },
@@ -94,7 +94,7 @@ export default function Services() {
             Todo el trabajo eléctrico y de aires acondicionados que necesitás.
           </h2>
           <p className="mt-5 text-base md:text-lg text-slate-600 leading-relaxed">
-            Soluciones integrales para hogares, comercios e industria — con materiales
+            Soluciones integrales para hogares, comercios e industria con materiales
             de primera calidad, presupuesto sin cargo y garantía.
           </p>
         </div>
@@ -115,7 +115,7 @@ export default function Services() {
             >
               {s.urgent && (
                 <span className="absolute -top-3 left-6 px-3 py-1 rounded-full bg-[#FACC15] text-[#0F172A] text-[10px] font-black uppercase tracking-widest shadow-md">
-                  24/7 · URGENTE
+                  URGENTE
                 </span>
               )}
               <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-colors ${

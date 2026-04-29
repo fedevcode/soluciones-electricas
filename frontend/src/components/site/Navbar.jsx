@@ -41,7 +41,7 @@ export default function Navbar() {
             alt="Soluciones Eléctricas"
             className="h-10 md:h-12 w-auto object-contain rounded-md group-hover:scale-105 transition-transform"
           />
-          <span className="font-display font-extrabold text-white text-lg tracking-tight hidden sm:inline">
+          <span className="font-display font-extrabold text-white text-lg tracking-tight hidden sm:inline uppercase">
             {COMPANY.name}
           </span>
         </a>

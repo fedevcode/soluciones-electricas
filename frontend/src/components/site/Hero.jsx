@@ -32,7 +32,7 @@ export default function Hero() {
 
           <h1
             data-testid="hero-title"
-            className="mt-6 font-display font-black text-white text-[2.5rem] sm:text-5xl lg:text-7xl leading-[1.02] tracking-tight"
+            className="mt-6 font-display font-black text-white text-[2.5rem] sm:text-5xl lg:text-7xl leading-[1.02] tracking-tight uppercase"
           >
             Soluciones Eléctricas
             <br />
@@ -77,7 +77,7 @@ export default function Hero() {
             ].map((item) => (
               <div
                 key={item.label}
-                className="flex flex-col items-start gap-2 p-4 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm"
+                className="flex flex-col items-center text-center gap-2 p-4 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm"
                 data-testid={`hero-badge-${item.label.toLowerCase().replace(/\s+/g, "-")}`}
               >
                 <item.icon className="w-5 h-5 text-[#FACC15]" />
