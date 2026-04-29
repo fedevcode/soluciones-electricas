@@ -56,7 +56,7 @@ export default function Testimonials() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: "start",
-    slidesToScroll: 1,
+    slidesToScroll: "auto",
     containScroll: "trimSnaps",
   });
 
