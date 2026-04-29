@@ -21,7 +21,7 @@ export default function LandingPage() {
   }, []);
 
   return (
-    <div data-testid="landing-page">
+    <div data-testid="landing-page" className="overflow-x-hidden w-full max-w-full">
       <Navbar />
       <main>
         <Hero />

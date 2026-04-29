@@ -1,5 +1,7 @@
-/* App-level scoped styles. Most styling lives in components via Tailwind. */
 .App {
     min-height: 100vh;
     background-color: #ffffff;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
 }

@@ -32,9 +32,9 @@ export default function Hero() {
 
           <h1
             data-testid="hero-title"
-            className="mt-6 font-display font-black text-white text-[2.5rem] sm:text-5xl lg:text-7xl leading-[1.02] tracking-tight uppercase"
+            className="mt-6 font-display font-black text-white text-[2rem] sm:text-5xl lg:text-7xl leading-[1.05] tracking-tight break-words"
           >
-            Soluciones Eléctricas
+            <span className="uppercase">Soluciones Eléctricas</span>
             <br />
             <span className="text-[#FACC15]">en Buenos Aires</span>
           </h1>
