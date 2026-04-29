@@ -25,19 +25,19 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 w-full grid lg:grid-cols-12 gap-12 items-center py-16">
         <div className="lg:col-span-8 reveal">
-          <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FACC15]/15 border border-[#FACC15]/30 text-[#FACC15] text-xs font-semibold uppercase tracking-widest">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#FACC15] animate-pulse" />
-            Electricistas certificados y aires acondicionados · CABA y GBA
-          </span>
-
           <h1
             data-testid="hero-title"
-            className="mt-6 font-display font-black text-white text-[2rem] sm:text-5xl lg:text-7xl leading-[1.05] tracking-tight break-words"
+            className="font-display font-black text-white text-[2rem] sm:text-5xl lg:text-7xl leading-[1.05] tracking-tight break-words"
           >
             <span className="uppercase">Soluciones Eléctricas</span>
             <br />
             <span className="text-[#FACC15]">en Buenos Aires</span>
           </h1>
+
+          <span className="mt-5 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FACC15]/15 border border-[#FACC15]/30 text-[#FACC15] text-[10px] sm:text-xs font-semibold uppercase tracking-widest">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#FACC15] animate-pulse" />
+            Electricistas certificados y aires acondicionados · CABA y GBA
+          </span>
 
           <p
             data-testid="hero-subtitle"
